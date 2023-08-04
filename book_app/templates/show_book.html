@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container w-75 mx-auto">
+    <h3 class="display-5 fs-4 text-center mt-3 mb-3 text-uppercase">List of All Books</h3>
+    {% if data %}
+    <table class=" table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">BookId</th>
+                <th scope="col">Book Name</th>
+                <th scope="col">Author Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">First Publication</th>
+                <th scope="col">Last Publication</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.book_name}}</td>
+                <td>{{item.author}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.first_published}}</td>
+                <td>{{item.last_published}}</td>
+                <td><a href="{% url 'edit_book' id=item.id %}"><button class="btn btn-warning btn-sm">Edit</button></a>
+                    <a href="{% url 'delete_book' id=item.id %}"><button
+                            class="btn btn-danger btn-sm">Delete</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h4 class="display-5 fs-4 text-start mt-3 text-capitalize">Opps! No books availabe</h4>
+    {% endif %}
+</div>
+{% endblock %}

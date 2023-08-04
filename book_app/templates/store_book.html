@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container w-50 mx-auto">
+    <div class="p-4 border mt-5 border-radius border-success-subtle rounded">
+        <h3 class="text-center text-uppercase fs-3 display-5">Add your Book in Store</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input type="submit" value="submit" class="btn btn-info text-uppercase fw-normal">
+        </form>
+    </div>
+</div>
+{% endblock %}
